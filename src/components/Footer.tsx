@@ -11,7 +11,7 @@ export const Footer = () => {
         {/* Brand Column */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <img 
-            src="/images/sorriso-calmo.png" 
+            src="/images/sorriso-calmo.webp" 
             alt="Ilustração Calmô" 
             className="w-16 opacity-90 mix-blend-screen"
             loading="lazy"

@@ -12,7 +12,7 @@ export const HeroSection = () => {
     <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img 
-          src="/images/hero/calmo-1.jpg" 
+          src="/images/hero/calmo-1.webp" 
           alt="Calmô Cafeteria" 
           className="w-full h-full object-cover"
         />
