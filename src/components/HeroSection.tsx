@@ -20,10 +20,10 @@ export const HeroSection = () => {
       </div>
       
       <div className="relative z-10 text-center px-4 animate-fade-in-up">
-        <h1 className="font-serif text-6xl md:text-8xl text-cream mb-4 tracking-wide drop-shadow-sm opacity-90">
+        <h1 className="font-display text-6xl md:text-8xl text-cream mb-4 tracking-wide drop-shadow-sm opacity-90 uppercase">
           Calmô
         </h1>
-        <p className="text-cream/90 text-lg md:text-xl font-light tracking-[0.2em] uppercase mb-12">
+        <p className="text-cream/90 text-lg md:text-xl font-sans font-light tracking-[0.2em] uppercase mb-12">
           Cafés & Cookies
         </p>
         

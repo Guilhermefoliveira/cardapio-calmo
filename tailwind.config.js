@@ -19,7 +19,6 @@ export default {
       fontFamily: {
         display: ['"Oswald"', 'sans-serif'],
         sans: ['"Open Sans"', 'sans-serif'],
-        serif: ['"Playfair Display"', 'serif'], // Keeping as backup/accent if needed
       },
       animation: {
         'fade-in-up': 'fadeInUp 1s ease-out forwards',
