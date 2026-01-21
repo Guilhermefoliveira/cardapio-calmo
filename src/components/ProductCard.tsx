@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ImageModal } from './ImageModal';
 import { Product } from '../types';
 
@@ -14,10 +15,14 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
 
   return (
     <>
-      <div 
+      <motion.div 
         className="group relative bg-transparent"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5 }}
       >
         <div 
           className="aspect-[4/3] overflow-hidden rounded-2xl bg-cream mb-4 relative shadow-sm transition-all duration-500 group-hover:shadow-md cursor-pointer"
@@ -63,7 +68,7 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
             <p className="font-sans text-gray-500 text-xs md:text-sm leading-relaxed font-light line-clamp-2">{description}</p>
           )}
         </div>
-      </div>
+      </motion.div>
 
       <ImageModal 
         isOpen={isModalOpen} 
