@@ -121,7 +121,7 @@ export const PRODUCTS: Product[] = [
     id: 'cq-3',
     name: 'Flat Baunilha',
     category: 'Cafés Quentes',
-    // image: missing
+    image: '/images/products/cafés quentes/flat white padrão.webp'
   },
   {
     id: 'cq-4',
@@ -179,12 +179,12 @@ export const PRODUCTS: Product[] = [
     category: 'Cafés Gelados',
     image: '/images/products/cafés gelados/frappe café padrão.webp'
   },
-  {
+  /* {
     id: 'cg-5',
     name: 'Iced Banoffe',
     category: 'Cafés Gelados',
     // image: missing
-  },
+  }, */
   {
     id: 'cg-6',
     name: 'Iced Flat Baunilha',
@@ -221,7 +221,7 @@ export const PRODUCTS: Product[] = [
     id: 'm-1',
     name: 'Iced Matcha Baunilha',
     category: 'Matcha',
-    // image: missing
+    image: '/images/products/matcha/ice matcha latte padrão.webp'
   },
   {
     id: 'm-2',
@@ -245,14 +245,14 @@ export const PRODUCTS: Product[] = [
     id: 'm-5',
     name: 'Matcha Latte Baunilha',
     category: 'Matcha',
-    // image: missing
+    image: '/images/products/matcha/matcha latte padrão.webp'
   },
-  {
+  /* {
     id: 'm-6',
     name: 'Matcha Tradicional',
     category: 'Matcha',
     // image: missing
-  },
+  }, */
 
   // Gelados
   {
@@ -261,18 +261,18 @@ export const PRODUCTS: Product[] = [
     category: 'Gelados',
     image: '/images/products/Gelados/açai padrão.webp'
   },
-  {
+ /*  {
     id: 'g-2',
     name: 'Milkshake de Frutas Vermelhas',
     category: 'Gelados',
     // image: missing
-  },
-  {
+  }, */
+  /* {
     id: 'g-3',
     name: 'Milkshake de Pistache',
     category: 'Gelados',
     // image: missing
-  },
+  }, */
   {
     id: 'g-4',
     name: 'Açaí Premium P',
@@ -303,20 +303,20 @@ export const PRODUCTS: Product[] = [
     category: 'Gelados',
     image: '/images/products/Gelados/smoothie manga padrão.webp'
   },
-  {
+  /* {
     id: 'g-9',
     name: 'Smoothie Açaí',
     category: 'Gelados',
     // image: missing
-  },
+  }, */
 
   // Outras bebidas
-  {
+  /* {
     id: 'o-1',
     name: 'Chocolate Gelado',
     category: 'Outras bebidas',
     // image: missing
-  },
+  }, */
   {
     id: 'o-2',
     name: 'Chocolate Quente',
