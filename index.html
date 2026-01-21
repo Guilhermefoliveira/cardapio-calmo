@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calmô - Pausa para um café</title>
+    <meta name="description" content="Pausa para um café, um cookie e um respiro. Momentos simples feitos com carinho. Conheça nosso cardápio.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calmo-cardapio.vercel.app/">
+    <meta property="og:title" content="Calmô - Pausa para um café">
+    <meta property="og:description" content="Pausa para um café, um cookie e um respiro. Momentos simples feitos com carinho. Conheça nosso cardápio.">
+    <meta property="og:image" content="/images/calmo-footer.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://calmo-cardapio.vercel.app/">
+    <meta property="twitter:title" content="Calmô - Pausa para um café">
+    <meta property="twitter:description" content="Pausa para um café, um cookie e um respiro. Momentos simples feitos com carinho. Conheça nosso cardápio.">
+    <meta property="twitter:image" content="/images/calmo-footer.png">
+
+    <!-- Preload Critical Assets -->
+    <link rel="preload" as="image" href="/images/hero/calmo-1.jpg" />
+    
+    <script type="module">
+      if (import.meta.hot?.on) {
+        import.meta.hot.on('vite:error', (error) => {
+          if (error.err) {
+            console.error(
+              [error.err.message, error.err.frame].filter(Boolean).join('\n'),
+            )
+          }
+        })
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
