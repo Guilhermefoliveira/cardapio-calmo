@@ -125,9 +125,13 @@ export const Footer = () => {
             <div className="text-center lg:text-right text-cream/60 text-xs font-sans font-light tracking-wide mt-6">
               <p className="mb-1">© {new Date().getFullYear()} Calmô. {t('footer.copyright')}</p>
               <p>
-                <Trans i18nKey="footer.credits">
-                  Feito por <a href="https://github.com/Guilhermefoliveira" target="_blank" rel="noopener noreferrer" className="hover:text-coffee-light transition-colors font-medium">Guilherme Oliveira</a> com <span className="text-coffee-light">♥</span> e café.
-                </Trans>
+                <Trans 
+                  i18nKey="footer.credits"
+                  components={{
+                    0: <a href="https://github.com/Guilhermefoliveira" target="_blank" rel="noopener noreferrer" className="hover:text-coffee-light transition-colors font-medium" />,
+                    1: <span className="text-coffee-light" />
+                  }}
+                />
               </p>
             </div>
           </div>
