@@ -15,6 +15,7 @@ export function FloatingButton() {
       transition={{ delay: 1, type: "spring" }}
       whileHover={{ scale: 1.1 }}
       title={t('actions.orderIfood')}
+      aria-label={t('actions.orderIfood')}
     >
       <div className="relative w-8 h-8 md:w-10 md:h-10 text-white">
         <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
