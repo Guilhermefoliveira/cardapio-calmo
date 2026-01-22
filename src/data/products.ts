@@ -238,7 +238,7 @@ export const PRODUCTS: Product[] = [
     name: 'Iced Flat White',
     category: 'Cafés Gelados',
     description: 'A versão gelada do clássico. Espresso duplo, leite gelado e gelo. Simples e marcante.',
-    // image: missing
+    image: '/images/products/cafés gelados/ice flat-baunilha padrão.webp'
   },
   {
     id: 'cg-10',
