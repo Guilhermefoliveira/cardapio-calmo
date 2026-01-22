@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 
 interface CategoryNavProps {
   categories: string[];
@@ -5,6 +6,8 @@ interface CategoryNavProps {
 }
 
 export const CategoryNav = ({ categories, activeCategory }: CategoryNavProps) => {
+  const { t } = useTranslation();
+
   const scrollToCategory = (category: string) => {
     const element = document.getElementById(category);
     if (element) {
@@ -29,7 +32,7 @@ export const CategoryNav = ({ categories, activeCategory }: CategoryNavProps) =>
                 }
               `}
             >
-              {category}
+              {t(`categories.${category}`)}
             </button>
           ))}
         </div>

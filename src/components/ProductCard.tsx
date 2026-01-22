@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ImageModal } from './ImageModal';
 import { Product } from '../types';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 type ProductCardProps = Omit<Product, 'id' | 'category'>;
 
@@ -9,6 +11,8 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { t } = useTranslation();
 
   const displayImage = (isHovered && imageDetail) ? imageDetail : image;
   const hasImage = image && !image.includes('desktop.ini') && !imageError;
@@ -65,7 +69,38 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
           {price && <span className="text-coffee font-display font-bold text-lg mb-1 block">{price}</span>}
 
           {description && (
-            <p className="font-sans text-gray-500 text-xs md:text-sm leading-relaxed font-light line-clamp-2">{description}</p>
+            <div className="mt-2">
+              <AnimatePresence>
+                {isExpanded ? (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <p className="font-sans text-gray-600 text-sm leading-relaxed font-light mb-2">
+                      {description}
+                    </p>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+              
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="flex items-center gap-1 text-coffee-light hover:text-coffee text-xs font-sans tracking-wide uppercase transition-colors"
+              >
+                {isExpanded ? (
+                  <>
+                    {t('actions.details', { defaultValue: 'Ver detalhes' })} <ChevronUp size={14} />
+                  </>
+                ) : (
+                  <>
+                    {t('actions.details', { defaultValue: 'Ver detalhes' })} <ChevronDown size={14} />
+                  </>
+                )}
+              </button>
+            </div>
           )}
         </div>
       </motion.div>

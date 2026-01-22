@@ -2,10 +2,12 @@ import { useState, useEffect, memo, useMemo } from 'react';
 import { ProductCard } from './ProductCard';
 import { PRODUCTS } from '../data/products';
 import { CategoryNav } from './CategoryNav';
+import { useTranslation } from 'react-i18next';
 
 const MemoizedProductCard = memo(ProductCard);
 
 export const ProductGrid = () => {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('');
 
   const categories = useMemo(() => {
@@ -85,7 +87,7 @@ export const ProductGrid = () => {
                  <div className="absolute -left-4 -top-6 w-20 h-20 bg-coffee-light/10 rounded-full blur-xl"></div>
                  
                  <h2 className="font-display text-3xl md:text-5xl text-coffee relative z-10 uppercase tracking-wide">
-                  {category}
+                  {t(`categories.${category}`)}
                  </h2>
                  <div className="h-px bg-coffee/20 flex-grow ml-6 mt-2"></div>
               </div>
@@ -96,9 +98,9 @@ export const ProductGrid = () => {
                     key={product.id}
                     image={product.image || ''}
                     imageDetail={product.imageDetail}
-                    name={product.name}
+                    name={t(`products.${product.id}.name`, { defaultValue: product.name })}
                     price={product.price || ''}
-                    description={product.description}
+                    description={product.description ? t(`products.${product.id}.description`, { defaultValue: product.description }) : undefined}
                   />
                 ))}
               </div>

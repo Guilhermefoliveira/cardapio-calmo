@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export function FloatingButton() {
+  const { t } = useTranslation();
+
   return (
     <motion.a
       href="https://www.ifood.com.br/delivery/"
@@ -11,7 +14,7 @@ export function FloatingButton() {
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1, type: "spring" }}
       whileHover={{ scale: 1.1 }}
-      title="Peça no iFood"
+      title={t('actions.orderIfood')}
     >
       <div className="relative w-8 h-8 md:w-10 md:h-10 text-white">
         <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
@@ -19,7 +22,7 @@ export function FloatingButton() {
         </svg>
       </div>
       <span className="absolute right-full mr-3 bg-white px-3 py-1 rounded-lg shadow-md text-sm font-bold text-[#EA1D2C] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-        Peça no iFood
+        {t('actions.orderIfood')}
       </span>
     </motion.a>
   );
