@@ -1,6 +1,6 @@
 import { SocialIcons } from './SocialIcons';
 import { MapPin, Clock } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 export const Footer = () => {
   const { t, i18n } = useTranslation();
@@ -124,7 +124,11 @@ export const Footer = () => {
             
             <div className="text-center lg:text-right text-cream/60 text-xs font-sans font-light tracking-wide mt-6">
               <p className="mb-1">© {new Date().getFullYear()} Calmô. {t('footer.copyright')}</p>
-              <p>Feito com <span className="text-coffee-light">♥</span> e café.</p>
+              <p>
+                <Trans i18nKey="footer.credits">
+                  Feito por <a href="https://github.com/Guilhermefoliveira" target="_blank" rel="noopener noreferrer" className="hover:text-coffee-light transition-colors font-medium">Guilherme Oliveira</a> com <span className="text-coffee-light">♥</span> e café.
+                </Trans>
+              </p>
             </div>
           </div>
         </div>
