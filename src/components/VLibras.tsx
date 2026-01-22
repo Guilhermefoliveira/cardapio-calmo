@@ -33,10 +33,10 @@ export const VLibras = () => {
   }, []);
 
   return (
-    <div className="enabled">
-      <div is-vlibras-widget="">
-        <div className="vw-access-button-active"></div>
-        <div className="vw-plugin-wrapper">
+    <div className="vlibras-widget">
+      <div vw="true" className="enabled">
+        <div vw-access-button="true" className="active"></div>
+        <div vw-plugin-wrapper="true">
           <div className="vw-plugin-top-wrapper"></div>
         </div>
       </div>
