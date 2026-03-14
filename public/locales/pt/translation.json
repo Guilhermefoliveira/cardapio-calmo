@@ -36,6 +36,14 @@
     "en": "Inglês",
     "es": "Espanhol"
   },
+  "instagram": {
+    "viewProfile": "Ver perfil",
+    "captions": {
+      "pistache": "Nosso cookie de pistache é irresistível! 💚",
+      "matchaBerry": "Refrescante e delicioso: Matcha Berry. ✨",
+      "croissant": "O acompanhamento perfeito para o seu café. 🥐"
+    }
+  },
   "products": {
     "c-1": { "name": "Biscoff", "description": "Massa com especiarias e recheio do famoso creme de biscoito Lotus Biscoff." },
     "c-2": { "name": "Brownie", "description": "A intensidade do cacau de um brownie transformada em um cookie denso e ultra chocolatudo." },

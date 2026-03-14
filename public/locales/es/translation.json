@@ -36,6 +36,14 @@
     "en": "Inglés",
     "es": "Español"
   },
+  "instagram": {
+    "viewProfile": "Ver perfil",
+    "captions": {
+      "pistache": "¡Nuestra galleta de pistacho es irresistible! 💚",
+      "matchaBerry": "Refrescante y delicioso: Matcha Berry. ✨",
+      "croissant": "El acompañamiento perfecto para tu café. 🥐"
+    }
+  },
   "products": {
     "c-1": { "name": "Biscoff", "description": "Masa con especias y relleno de la famosa crema de galleta Lotus Biscoff." },
     "c-2": { "name": "Brownie", "description": "La intensidad del cacao de un brownie transformada en una galleta densa y ultra chocolatosa." },

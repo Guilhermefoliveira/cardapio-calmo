@@ -25,3 +25,7 @@ dist-ssr
 
 # Trae internal files
 .trae/
+
+# Windows
+desktop.ini
+Thumbs.db

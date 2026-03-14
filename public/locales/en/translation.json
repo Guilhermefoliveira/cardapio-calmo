@@ -36,6 +36,14 @@
     "en": "English",
     "es": "Spanish"
   },
+  "instagram": {
+    "viewProfile": "View profile",
+    "captions": {
+      "pistache": "Our pistachio cookie is irresistible! 💚",
+      "matchaBerry": "Refreshing and delicious: Matcha Berry. ✨",
+      "croissant": "The perfect companion for your coffee. 🥐"
+    }
+  },
   "products": {
     "c-1": { "name": "Biscoff", "description": "Dough with spices and filled with the famous Lotus Biscoff biscuit cream." },
     "c-2": { "name": "Brownie", "description": "The intensity of brownie cocoa transformed into a dense and ultra-chocolatey cookie." },

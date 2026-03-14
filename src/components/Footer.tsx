@@ -1,13 +1,10 @@
 import { SocialIcons } from './SocialIcons';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { MapPin, Clock } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 
 export const Footer = () => {
-  const { t, i18n } = useTranslation();
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
+  const { t } = useTranslation();
 
   return (
     <footer className="bg-coffee py-16 px-6 mt-24 relative overflow-hidden">
@@ -81,14 +78,23 @@ export const Footer = () => {
             <div className="p-2 bg-coffee-light/10 rounded-full flex-shrink-0">
               <Clock size={20} className="text-coffee-light" />
             </div>
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-              <div className="mb-4">
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4">
+              <div>
                 <p className="text-cream font-sans font-medium text-sm mb-1">{t('footer.weekdays')}</p>
                 <p className="text-cream/70 text-sm font-sans font-light">07:30 - 19:30</p>
               </div>
               <div>
-                <p className="text-cream font-sans font-medium text-sm mb-1">{t('footer.saturday')}</p>
-                <p className="text-cream/70 text-sm font-sans font-light">10:00 - 17:45</p>
+                <p className="text-cream font-sans font-medium text-sm mb-2">{t('footer.saturday')}</p>
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-coffee-light text-xs font-sans font-medium bg-coffee-light/10 px-2 py-0.5 rounded-full border border-coffee-light/20">Beira Mar</span>
+                    <span className="text-cream/70 text-sm font-sans font-light">10:00 - 18:00</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-coffee-light text-xs font-sans font-medium bg-coffee-light/10 px-2 py-0.5 rounded-full border border-coffee-light/20">Centro</span>
+                    <span className="text-cream/70 text-sm font-sans font-light">09:00 - 17:00</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -96,28 +102,7 @@ export const Footer = () => {
 
         <div className="flex flex-col items-center lg:items-end lg:justify-self-end w-full gap-8">
           
-          <div className="flex items-center gap-4 bg-black/20 p-2 rounded-full backdrop-blur-sm">
-            <button 
-              onClick={() => changeLanguage('pt')}
-              className={`px-3 py-1 rounded-full text-xs font-sans tracking-wide transition-all ${i18n.language.startsWith('pt') ? 'bg-coffee-light text-coffee font-bold' : 'text-cream/60 hover:text-cream'}`}
-            >
-              PT
-            </button>
-            <div className="w-px h-4 bg-cream/20"></div>
-            <button 
-              onClick={() => changeLanguage('en')}
-              className={`px-3 py-1 rounded-full text-xs font-sans tracking-wide transition-all ${i18n.language.startsWith('en') ? 'bg-coffee-light text-coffee font-bold' : 'text-cream/60 hover:text-cream'}`}
-            >
-              EN
-            </button>
-            <div className="w-px h-4 bg-cream/20"></div>
-            <button 
-              onClick={() => changeLanguage('es')}
-              className={`px-3 py-1 rounded-full text-xs font-sans tracking-wide transition-all ${i18n.language.startsWith('es') ? 'bg-coffee-light text-coffee font-bold' : 'text-cream/60 hover:text-cream'}`}
-            >
-              ES
-            </button>
-          </div>
+          <LanguageSwitcher />
 
           <div className="flex flex-col items-center lg:items-end">
             <SocialIcons />

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ImageModal } from './ImageModal';
-import { Product } from '../types';
+import type { Product } from '@/types';
+import { formatPrice } from '@/lib/formatPrice';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -12,10 +13,10 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const displayImage = (isHovered && imageDetail) ? imageDetail : image;
-  const hasImage = image && !image.includes('desktop.ini') && !imageError;
+  const hasImage = !!image && !imageError;
 
   return (
     <>
@@ -66,7 +67,7 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
             <h3 className="font-display text-lg md:text-xl text-coffee font-medium leading-tight tracking-wide group-hover:text-coffee-light transition-colors">{name}</h3>
           </div>
           
-          {price && <span className="text-coffee font-display font-bold text-lg mb-1 block">{price}</span>}
+          {price != null && <span className="text-coffee font-display font-bold text-lg mb-1 block">{formatPrice(price, i18n.language)}</span>}
 
           {description && (
             <div className="mt-2">

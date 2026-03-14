@@ -1,6 +1,6 @@
 import { useState, useEffect, memo, useMemo } from 'react';
 import { ProductCard } from './ProductCard';
-import { PRODUCTS } from '../data/products';
+import { PRODUCTS } from '@/data/products';
 import { CategoryNav } from './CategoryNav';
 import { useTranslation } from 'react-i18next';
 
@@ -56,8 +56,8 @@ export const ProductGrid = () => {
       acc[category] = PRODUCTS
         .filter(p => p.category === category)
         .sort((a, b) => {
-          const aHasImage = a.image && !a.image.includes('desktop.ini');
-          const bHasImage = b.image && !b.image.includes('desktop.ini');
+          const aHasImage = !!a.image;
+          const bHasImage = !!b.image;
           if (aHasImage && !bHasImage) return -1;
           if (!aHasImage && bHasImage) return 1;
           return 0;
@@ -99,7 +99,7 @@ export const ProductGrid = () => {
                     image={product.image || ''}
                     imageDetail={product.imageDetail}
                     name={t(`products.${product.id}.name`, { defaultValue: product.name })}
-                    price={product.price || ''}
+                    price={product.price}
                     description={product.description ? t(`products.${product.id}.description`, { defaultValue: product.description }) : undefined}
                   />
                 ))}

@@ -1,28 +1,31 @@
 import { Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const POSTS = [
   {
     id: 1,
-    image: '/images/products/cookies/cookie pistache perto.webp',
+    image: '/images/products/cookies/cookie-pistache-perto.webp',
     link: 'https://www.instagram.com/querocalmo/reel/DTiVfKKDdPE/',
-    caption: 'Nosso cookie de pistache é irresistível! 💚'
+    captionKey: 'instagram.captions.pistache'
   },
   {
     id: 2,
-    image: '/images/products/matcha/matcha berry padrão.webp',
+    image: '/images/products/matcha/matcha-berry-padrao.webp',
     link: 'https://www.instagram.com/querocalmo/reel/DTVvo5GkV9X/',
-    caption: 'Refrescante e delicioso: Matcha Berry. ✨'
+    captionKey: 'instagram.captions.matchaBerry'
   },
   {
     id: 3,
-    image: '/images/products/salgados/croissant padrão.webp',
+    image: '/images/products/salgados/croissant-padrao.webp',
     link: 'https://www.instagram.com/querocalmo/reel/DRXf34OEWpX/',
-    caption: 'O acompanhamento perfeito para o seu café. 🥐'
+    captionKey: 'instagram.captions.croissant'
   }
 ];
 
 export function InstagramFeed() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -37,7 +40,7 @@ export function InstagramFeed() {
             rel="noopener noreferrer"
             className="text-coffee font-medium hover:text-coffee/80 transition-colors text-sm md:text-base"
           >
-            Ver perfil
+            {t('instagram.viewProfile')}
           </a>
         </div>
 
@@ -57,7 +60,7 @@ export function InstagramFeed() {
             >
               <img 
                 src={post.image} 
-                alt={post.caption}
+                alt={t(post.captionKey)}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
