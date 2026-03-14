@@ -41,7 +41,7 @@ export const Footer = () => {
               <MapPin size={20} className="text-coffee-light" />
             </div>
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-              <h4 className="font-display text-lg text-cream mb-1 tracking-wide group-hover:text-coffee-light transition-colors">Unidade Beira Mar <span className="text-xs text-coffee-light font-sans bg-coffee-light/10 px-2 py-0.5 rounded-full ml-1 border border-coffee-light/20 align-middle inline-block mt-1 lg:mt-0">Matriz</span></h4>
+              <h4 className="font-display text-lg text-cream mb-1 tracking-wide group-hover:text-coffee-light transition-colors">Unidade Beira Mar <span className="text-xs text-coffee-light font-sans bg-coffee-light/10 px-2 py-0.5 rounded-full ml-1 border border-coffee-light/20 align-middle inline-block mt-1 lg:mt-0">{t('footer.headquarters')}</span></h4>
               <p className="text-cream/70 text-sm font-sans font-light leading-relaxed">
                 Rua Altamiro Guimarães, 260 - Sala 1<br/>
                 Centro, Florianópolis

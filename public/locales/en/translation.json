@@ -11,6 +11,7 @@
     "social": "Social",
     "weekdays": "Monday to Friday",
     "saturday": "Saturday",
+    "headquarters": "HQ",
     "copyright": "All rights reserved.",
     "credits": "Made by <0>Guilherme Oliveira</0> with <1>♥</1> and coffee."
   },
@@ -26,7 +27,8 @@
   "actions": {
     "orderIfood": "Order on iFood",
     "backToTop": "Back to top",
-    "details": "View details"
+    "details": "View details",
+    "hide": "Hide"
   },
   "search": {
     "placeholder": "Search products..."

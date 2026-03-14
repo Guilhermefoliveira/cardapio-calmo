@@ -21,7 +21,7 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
   return (
     <>
       <motion.div 
-        className="group relative bg-transparent"
+        className="group relative bg-transparent flex flex-col"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         initial={{ opacity: 0, y: 20 }}
@@ -47,9 +47,6 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
                 decoding="async"
                 onError={() => setImageError(true)}
               />
-              <div className="placeholder hidden w-full h-full flex items-center justify-center bg-cream-dark/10 text-coffee/20 absolute inset-0">
-                 <span className="font-display text-3xl opacity-50">Calmô</span>
-              </div>
             </>
           )}
           
@@ -62,7 +59,7 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
           )}
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col flex-1">
           <div className="flex justify-between items-baseline mb-1">
             <h3 className="font-display text-lg md:text-xl text-coffee font-medium leading-tight tracking-wide group-hover:text-coffee-light transition-colors">{name}</h3>
           </div>
@@ -70,7 +67,7 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
           {price != null && <span className="text-coffee font-display font-bold text-lg mb-1 block">{formatPrice(price, i18n.language)}</span>}
 
           {description && (
-            <div className="mt-2">
+            <div className="mt-auto pt-2">
               <AnimatePresence>
                 {isExpanded ? (
                   <motion.div
@@ -93,7 +90,7 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
               >
                 {isExpanded ? (
                   <>
-                    {t('actions.details', { defaultValue: 'Ver detalhes' })} <ChevronUp size={14} />
+                    {t('actions.hide', { defaultValue: 'Ocultar' })} <ChevronUp size={14} />
                   </>
                 ) : (
                   <>

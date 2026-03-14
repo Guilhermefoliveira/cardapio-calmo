@@ -11,6 +11,7 @@
     "social": "Redes Sociales",
     "weekdays": "Lunes a Viernes",
     "saturday": "Sábado",
+    "headquarters": "Sede",
     "copyright": "Todos los derechos reservados.",
     "credits": "Hecho por <0>Guilherme Oliveira</0> con <1>♥</1> y café."
   },
@@ -26,7 +27,8 @@
   "actions": {
     "orderIfood": "Pide en iFood",
     "backToTop": "Volver arriba",
-    "details": "Ver detalles"
+    "details": "Ver detalles",
+    "hide": "Ocultar"
   },
   "search": {
     "placeholder": "Buscar productos..."

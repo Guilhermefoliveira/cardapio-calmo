@@ -1,14 +1,8 @@
 
-export function formatPrice(cents: number, locale: string): string {
+export function formatPrice(cents: number, _locale?: string): string {
   const value = cents / 100;
 
-  const localeMap: Record<string, string> = {
-    pt: 'pt-BR',
-    en: 'en-US',
-    es: 'es-ES',
-  };
-
-  return new Intl.NumberFormat(localeMap[locale] ?? 'pt-BR', {
+  return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   }).format(value);

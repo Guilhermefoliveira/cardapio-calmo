@@ -11,6 +11,7 @@
     "social": "Redes Sociais",
     "weekdays": "Segunda a Sexta",
     "saturday": "Sábado",
+    "headquarters": "Matriz",
     "copyright": "Todos os direitos reservados.",
     "credits": "Feito por <0>Guilherme Oliveira</0> com <1>♥</1> e café."
   },
@@ -26,7 +27,8 @@
   "actions": {
     "orderIfood": "Peça no iFood",
     "backToTop": "Voltar ao topo",
-    "details": "Ver detalhes"
+    "details": "Ver detalhes",
+    "hide": "Ocultar"
   },
   "search": {
     "placeholder": "Buscar produtos..."
