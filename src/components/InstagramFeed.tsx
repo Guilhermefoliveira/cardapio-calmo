@@ -1,5 +1,5 @@
 import { Instagram } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 const POSTS = [
@@ -25,18 +25,19 @@ const POSTS = [
 
 export function InstagramFeed() {
   const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-16 bg-cream">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
             <Instagram className="w-6 h-6 text-coffee" />
             <h2 className="text-2xl font-display text-coffee font-bold">@querocalmo</h2>
           </div>
-          <a 
-            href="https://www.instagram.com/querocalmo/" 
-            target="_blank" 
+          <a
+            href="https://www.instagram.com/querocalmo/"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-coffee font-medium hover:text-coffee/80 transition-colors text-sm md:text-base"
           >
@@ -52,14 +53,14 @@ export function InstagramFeed() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative aspect-square overflow-hidden rounded-xl bg-cream/20"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
+              transition={shouldReduceMotion ? {} : { delay: index * 0.1 }}
+              whileHover={shouldReduceMotion ? {} : { y: -5 }}
             >
-              <img 
-                src={post.image} 
+              <img
+                src={post.image}
                 alt={t(post.captionKey)}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />

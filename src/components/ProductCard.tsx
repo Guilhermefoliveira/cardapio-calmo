@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ImageModal } from './ImageModal';
 import type { Product } from '@/types';
 import { formatPrice } from '@/lib/formatPrice';
@@ -14,20 +14,21 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
   const [imageError, setImageError] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const { t, i18n } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
 
   const displayImage = (isHovered && imageDetail) ? imageDetail : image;
   const hasImage = !!image && !imageError;
 
   return (
     <>
-      <motion.div 
+      <motion.div
         className="group relative bg-transparent flex flex-col"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+        whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5 }}
+        transition={shouldReduceMotion ? {} : { duration: 0.5 }}
       >
         <div 
           className="aspect-[4/3] overflow-hidden rounded-2xl bg-cream mb-4 relative shadow-sm transition-all duration-500 group-hover:shadow-md cursor-pointer"
@@ -90,11 +91,11 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
               >
                 {isExpanded ? (
                   <>
-                    {t('actions.hide', { defaultValue: 'Ocultar' })} <ChevronUp size={14} />
+                    {t('actions.hide')} <ChevronUp size={14} />
                   </>
                 ) : (
                   <>
-                    {t('actions.details', { defaultValue: 'Ver detalhes' })} <ChevronDown size={14} />
+                    {t('actions.details')} <ChevronDown size={14} />
                   </>
                 )}
               </button>

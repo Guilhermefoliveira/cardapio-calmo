@@ -50,7 +50,6 @@ export const ImageModal = ({ isOpen, onClose, image, name }: ImageModalProps) =>
             src={image} 
             alt={name} 
             className="w-full h-full object-contain shadow-md rounded-lg"
-            loading="lazy"
           />
         </div>
         

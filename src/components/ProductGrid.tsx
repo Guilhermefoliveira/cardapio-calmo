@@ -81,7 +81,7 @@ export const ProductGrid = () => {
               key={category} 
               id={category}
               className="scroll-mt-32 mb-16 md:mb-24 last:mb-0 pt-8"
-              style={{ contentVisibility: 'auto' }} //
+              style={{ contentVisibility: 'auto', containIntrinsicSize: '0 800px' }}
             >
               <div className="flex items-center justify-start mb-8 md:mb-10 relative">
                  <div className="absolute -left-4 -top-6 w-20 h-20 bg-coffee-light/10 rounded-full blur-xl"></div>

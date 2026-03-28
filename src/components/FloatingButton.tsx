@@ -1,8 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 export function FloatingButton() {
   const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.a
@@ -12,8 +13,8 @@ export function FloatingButton() {
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#EA1D2C] rounded-full shadow-lg hover:shadow-xl transition-shadow group"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 1, type: "spring" }}
-      whileHover={{ scale: 1.1 }}
+      transition={{ delay: shouldReduceMotion ? 0 : 1, type: "tween", ease: "easeOut", duration: shouldReduceMotion ? 0 : 0.3 }}
+      whileHover={shouldReduceMotion ? {} : { scale: 1.1 }}
       title={t('actions.orderIfood')}
       aria-label={t('actions.orderIfood')}
     >

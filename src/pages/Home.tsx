@@ -8,9 +8,11 @@ import { BackToTop } from '../components/BackToTop';
 const Home = () => {
   return (
     <div className="flex flex-col min-h-screen bg-cream">
-      <HeroSection />
-      <ProductGrid />
-      <InstagramFeed />
+      <main>
+        <HeroSection />
+        <ProductGrid />
+        <InstagramFeed />
+      </main>
       <Footer />
       <FloatingButton />
       <BackToTop />

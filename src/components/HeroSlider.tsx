@@ -6,17 +6,6 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
-const paginationStyles = `
-  .swiper-pagination-bullet {
-    background: #F5E6D3;
-    opacity: 0.5;
-  }
-  .swiper-pagination-bullet-active {
-    background: #F5E6D3;
-    opacity: 1;
-  }
-`;
-
 const slides = [
   {
     desktop: '/images/hero/calmo-1.webp',
@@ -26,7 +15,7 @@ const slides = [
   },
   {
     desktop: '/images/hero/calmo-2.webp',
-    mobile: '/images/hero/calmo-3-teste2.webp', 
+    mobile: '/images/hero/calmo-3-teste2.webp',
     desktopPosition: 'bg-[center_top_30%]',
     mobilePosition: 'bg-center'
   },
@@ -59,8 +48,6 @@ export function HeroSlider({ onScrollToMenu }: HeroSliderProps) {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      <style>{paginationStyles}</style>
-      
       <Swiper
         modules={[Autoplay, EffectFade, Pagination]}
         effect="fade"
@@ -68,6 +55,7 @@ export function HeroSlider({ onScrollToMenu }: HeroSliderProps) {
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         }}
         pagination={{
           clickable: true,
@@ -79,17 +67,17 @@ export function HeroSlider({ onScrollToMenu }: HeroSliderProps) {
           <SwiperSlide key={index}>
             <div className="relative h-full w-full">
               {/* Mobile Image */}
-              <div 
+              <div
                 className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-[5000ms] hover:scale-105 md:hidden ${slide.mobilePosition}`}
                 style={{ backgroundImage: `url('${slide.mobile}')` }}
               />
-              
+
               {/* Desktop Image */}
-              <div 
+              <div
                 className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-[5000ms] hover:scale-105 hidden md:block ${slide.desktopPosition}`}
                 style={{ backgroundImage: `url('${slide.desktop}')` }}
               />
-              
+
               <div className="absolute inset-0 bg-black/40" />
             </div>
           </SwiperSlide>
@@ -102,13 +90,13 @@ export function HeroSlider({ onScrollToMenu }: HeroSliderProps) {
           <p className="font-sans text-xl md:text-2xl text-cream/90 font-light tracking-widest uppercase mb-12 animate-fade-in-up delay-200">
             {t('hero.subtitle')}
           </p>
-          
-          <button 
+
+          <button
             onClick={onScrollToMenu}
-            className="group flex flex-col items-center gap-2 text-cream/80 hover:text-cream transition-colors duration-300 cursor-pointer animate-bounce-slow"
+            className="group flex flex-col items-center gap-2 text-cream/80 hover:text-cream transition-colors duration-300 cursor-pointer"
           >
             <span className="text-sm tracking-[0.2em] uppercase">{t('hero.cta')}</span>
-            <ChevronDown className="w-6 h-6 animate-bounce" />
+            <ChevronDown className="w-6 h-6 animate-nudge-down" />
           </button>
         </div>
       </Swiper>

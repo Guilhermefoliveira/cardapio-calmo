@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useTranslation();
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 500) {
+      if (window.scrollY > 500) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -32,9 +33,9 @@ export function BackToTop() {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0 }}
+          initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0 }}
+          animate={shouldReduceMotion ? {} : { opacity: 1, scale: 1 }}
+          exit={shouldReduceMotion ? {} : { opacity: 0, scale: 0 }}
           className="fixed bottom-24 right-6 z-40 p-3 bg-coffee text-white rounded-full shadow-lg hover:bg-coffee-light transition-colors md:bottom-24"
           aria-label={t('actions.backToTop')}
         >

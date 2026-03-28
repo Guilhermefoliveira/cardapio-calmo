@@ -11,7 +11,7 @@ export const CategoryNav = ({ categories, activeCategory }: CategoryNavProps) =>
   const scrollToCategory = (category: string) => {
     const element = document.getElementById(category);
     if (element) {
-      const y = element.getBoundingClientRect().top + window.pageYOffset - 100;
+      const y = element.getBoundingClientRect().top + window.scrollY - 100;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
@@ -24,6 +24,7 @@ export const CategoryNav = ({ categories, activeCategory }: CategoryNavProps) =>
             <button
               key={category}
               onClick={() => scrollToCategory(category)}
+              aria-current={activeCategory === category ? 'true' : undefined}
               className={`
                 whitespace-nowrap px-4 py-2 rounded-full text-sm md:text-base font-display tracking-wide transition-all duration-300 snap-center
                 ${activeCategory === category 
