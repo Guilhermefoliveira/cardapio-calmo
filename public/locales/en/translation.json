@@ -4,6 +4,9 @@
     "subtitle": "Coffee & Cookies",
     "cta": "See Menu"
   },
+  "nav": {
+    "categories": "Menu categories"
+  },
   "footer": {
     "about": "Specialty coffee and artisanal cookies made with love for your break.",
     "location": "Location",

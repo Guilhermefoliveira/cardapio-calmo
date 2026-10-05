@@ -4,6 +4,9 @@
     "subtitle": "Cafés y Cookies",
     "cta": "Ver Menú"
   },
+  "nav": {
+    "categories": "Categorías del menú"
+  },
   "footer": {
     "about": "Cafés especiales y galletas artesanales hechas con cariño para tu descanso.",
     "location": "Ubicación",

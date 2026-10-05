@@ -4,6 +4,9 @@
     "subtitle": "Cafés & Cookies",
     "cta": "Ver Cardápio"
   },
+  "nav": {
+    "categories": "Categorias do cardápio"
+  },
   "footer": {
     "about": "Cafés especiais e cookies artesanais feitos com carinho para o seu momento de pausa.",
     "location": "Localização",
