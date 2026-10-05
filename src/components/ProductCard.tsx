@@ -13,7 +13,7 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const shouldReduceMotion = useReducedMotion();
 
   const displayImage = (isHovered && imageDetail) ? imageDetail : image;
@@ -65,7 +65,7 @@ export const ProductCard = ({ image, imageDetail, name, price, description }: Pr
             <h3 className="font-display text-lg md:text-xl text-coffee font-medium leading-tight tracking-wide group-hover:text-coffee-light transition-colors">{name}</h3>
           </div>
           
-          {price != null && <span className="text-coffee font-display font-bold text-lg mb-1 block">{formatPrice(price, i18n.language)}</span>}
+          {price != null && <span className="text-coffee font-display font-bold text-lg mb-1 block">{formatPrice(price)}</span>}
 
           {description && (
             <div className="mt-auto pt-2">

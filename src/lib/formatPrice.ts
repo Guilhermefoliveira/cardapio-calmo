@@ -1,5 +1,5 @@
 
-export function formatPrice(cents: number, _locale?: string): string {
+export function formatPrice(cents: number): string {
   const value = cents / 100;
 
   return new Intl.NumberFormat('pt-BR', {
