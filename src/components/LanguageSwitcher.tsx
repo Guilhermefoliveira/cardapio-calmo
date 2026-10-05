@@ -5,7 +5,6 @@ export const LanguageSwitcher = () => {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-    document.documentElement.lang = lng === 'pt' ? 'pt-BR' : lng;
   };
 
   const flags = {
