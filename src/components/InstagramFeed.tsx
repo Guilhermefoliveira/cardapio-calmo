@@ -1,6 +1,7 @@
 import { Instagram } from 'lucide-react';
-import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useInView } from '@/hooks/useInView';
+import { cn } from '@/lib/utils';
 
 const POSTS = [
   {
@@ -25,52 +26,49 @@ const POSTS = [
 
 export function InstagramFeed() {
   const { t } = useTranslation();
-  const shouldReduceMotion = useReducedMotion();
+  const [ref, inView] = useInView<HTMLUListElement>();
 
   return (
-    <section className="py-16 bg-cream">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
+    <section className="bg-cream py-12 md:py-16" aria-labelledby="instagram-title">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="mb-6 flex items-center justify-between md:mb-8">
           <div className="flex items-center gap-2">
-            <Instagram className="w-6 h-6 text-coffee" />
-            <h2 className="text-2xl font-display text-coffee font-bold">@querocalmo</h2>
+            <Instagram className="h-6 w-6 text-coffee" aria-hidden="true" />
+            <h2 id="instagram-title" className="font-display text-2xl font-bold normal-case tracking-normal text-coffee">@querocalmo</h2>
           </div>
           <a
             href="https://www.instagram.com/querocalmo/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-coffee font-medium hover:text-coffee/80 transition-colors text-sm md:text-base"
+            className="flex min-h-11 items-center font-medium text-coffee transition-colors hover:text-coffee/80 text-sm md:text-base"
           >
             {t('instagram.viewProfile')}
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-          {POSTS.map((post, index) => (
-            <motion.a
-              key={post.id}
-              href={post.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative aspect-square overflow-hidden rounded-xl bg-cream/20"
-              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={shouldReduceMotion ? {} : { delay: index * 0.1 }}
-              whileHover={shouldReduceMotion ? {} : { y: -5 }}
-            >
-              <img
-                src={post.image}
-                alt={t(post.captionKey)}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Instagram className="w-8 h-8 text-white drop-shadow-lg" />
-              </div>
-            </motion.a>
+        <ul ref={ref} className={cn('grid grid-cols-3 gap-2 reveal md:gap-8', !inView && 'reveal-pending')}>
+          {POSTS.map((post) => (
+            <li key={post.id}>
+              <a
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block aspect-square overflow-hidden rounded-xl bg-cream-dark/40"
+              >
+                <img
+                  src={post.image}
+                  alt={t(post.captionKey)}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/20 group-hover:opacity-100">
+                  <Instagram className="h-8 w-8 text-white drop-shadow-lg" aria-hidden="true" />
+                </div>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
