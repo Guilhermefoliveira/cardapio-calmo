@@ -10,3 +10,13 @@ export interface Product {
 }
 
 export type Category = string;
+
+/** A product with its texts resolved in the current language. */
+export interface MenuItem {
+  id: string;
+  name: string;
+  description?: string;
+  price?: number;
+  image?: string;
+  imageDetail?: string;
+}

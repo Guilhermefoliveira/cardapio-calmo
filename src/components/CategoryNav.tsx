@@ -1,16 +1,22 @@
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { cn } from '@/lib/utils';
+
+export interface NavCategory {
+  id: string;
+  label: string;
+}
 
 interface CategoryNavProps {
-  categories: string[];
-  activeCategory: string;
+  categories: NavCategory[];
+  activeId: string;
   onHeightChange: (height: number) => void;
 }
 
 const scrollBehavior = (): ScrollBehavior =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
 
-export const CategoryNav = ({ categories, activeCategory, onHeightChange }: CategoryNavProps) => {
+export const CategoryNav = ({ categories, activeId, onHeightChange }: CategoryNavProps) => {
   const { t } = useTranslation();
   const navRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
@@ -27,45 +33,48 @@ export const CategoryNav = ({ categories, activeCategory, onHeightChange }: Cate
 
   useEffect(() => {
     const list = listRef.current;
-    const button = buttonRefs.current.get(activeCategory);
+    const button = buttonRefs.current.get(activeId);
     if (!list || !button) return;
 
     const left = button.offsetLeft - (list.clientWidth - button.offsetWidth) / 2;
     list.scrollTo({ left, behavior: scrollBehavior() });
-  }, [activeCategory]);
+  }, [activeId]);
 
-  const scrollToCategory = (category: string) => {
-    document.getElementById(category)?.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
+  const scrollToCategory = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
   };
 
   return (
     <nav
       ref={navRef}
       aria-label={t('nav.categories')}
-      className="sticky top-0 left-0 z-40 w-full bg-cream/95 backdrop-blur-md shadow-sm py-4 transition-all duration-300"
+      className="sticky top-0 z-nav w-full bg-cream/95 py-3 shadow-sm backdrop-blur-md"
     >
-      <div className="max-w-7xl mx-auto px-4">
-        <div ref={listRef} className="relative flex overflow-x-auto no-scrollbar gap-4 md:gap-8 pb-2 md:pb-0 snap-x">
-          {categories.map((category) => (
-            <button
-              key={category}
-              ref={(element) => {
-                if (element) buttonRefs.current.set(category, element);
-                else buttonRefs.current.delete(category);
-              }}
-              onClick={() => scrollToCategory(category)}
-              aria-current={activeCategory === category ? 'true' : undefined}
-              className={`
-                whitespace-nowrap px-4 py-2 rounded-full text-sm md:text-base font-display tracking-wide transition-all duration-300 snap-center
-                ${activeCategory === category
-                  ? 'bg-coffee text-cream shadow-md scale-105'
-                  : 'bg-white/50 text-coffee hover:bg-white hover:shadow-sm'
-                }
-              `}
-            >
-              {t(`categories.${category}`)}
-            </button>
-          ))}
+      <div className="mx-auto max-w-7xl px-4">
+        <div ref={listRef} className="relative flex gap-3 overflow-x-auto no-scrollbar py-1 md:gap-6">
+          {categories.map(({ id, label }) => {
+            const active = id === activeId;
+            return (
+              <button
+                key={id}
+                type="button"
+                ref={(element) => {
+                  if (element) buttonRefs.current.set(id, element);
+                  else buttonRefs.current.delete(id);
+                }}
+                onClick={() => scrollToCategory(id)}
+                aria-current={active ? 'true' : undefined}
+                className={cn(
+                  'flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-full px-4 font-display text-sm tracking-wide transition-all duration-300 md:text-base',
+                  active
+                    ? 'bg-coffee text-cream shadow-md [--focus:theme(colors.coffee.DEFAULT)]'
+                    : 'bg-white/50 text-coffee hover:bg-white hover:shadow-sm',
+                )}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
       </div>
     </nav>

@@ -1,115 +1,53 @@
 import { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { ImageModal } from './ImageModal';
-import type { Product } from '@/types';
+import type { MenuItem } from '@/types';
 import { formatPrice } from '@/lib/formatPrice';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useInView } from '@/hooks/useInView';
+import { cn } from '@/lib/utils';
+import commaUrl from '@/assets/brand/comma.webp';
 
-type ProductCardProps = Omit<Product, 'id' | 'category'>;
+interface ProductCardProps {
+  item: MenuItem;
+  onOpen: (item: MenuItem) => void;
+}
 
-export const ProductCard = ({ image, imageDetail, name, price, description }: ProductCardProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export const ProductCard = ({ item, onOpen }: ProductCardProps) => {
   const [imageError, setImageError] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const { t } = useTranslation();
-  const shouldReduceMotion = useReducedMotion();
-
-  const displayImage = (isHovered && imageDetail) ? imageDetail : image;
-  const hasImage = !!image && !imageError;
+  const [ref, inView] = useInView<HTMLLIElement>();
+  const hasImage = !!item.image && !imageError;
 
   return (
-    <>
-      <motion.div
-        className="group relative bg-transparent flex flex-col"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-        whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={shouldReduceMotion ? {} : { duration: 0.5 }}
-      >
-        <div 
-          className="aspect-[4/3] overflow-hidden rounded-2xl bg-cream mb-4 relative shadow-sm transition-all duration-500 group-hover:shadow-md cursor-pointer"
-          onClick={() => hasImage && setIsModalOpen(true)}
-        >
-          {!hasImage ? (
-             <div className="w-full h-full flex items-center justify-center bg-cream-dark/10 text-coffee/20">
-               <span className="font-display text-3xl opacity-50">Calmô</span>
-             </div>
-          ) : (
-            <>
-              <img 
-                src={displayImage} 
-                alt={name} 
-                className={`w-full h-full object-cover transition-transform duration-700 ${isHovered && !imageDetail ? 'scale-110' : 'scale-100'}`}
-                loading="lazy"
-                decoding="async"
-                onError={() => setImageError(true)}
-              />
-            </>
-          )}
-          
-          <div className="absolute inset-0 bg-coffee/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          
-          {hasImage && (
-            <div className="absolute bottom-3 right-3 bg-white/90 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-coffee"><path d="m21 21-6-6"/><circle cx="10" cy="10" r="7"/><line x1="10" x2="10" y1="13" y2="7"/><line x1="13" x2="7" y1="10" y2="10"/></svg>
-            </div>
-          )}
-        </div>
-
-        <div className="flex flex-col flex-1">
-          <div className="flex justify-between items-baseline mb-1">
-            <h3 className="font-display text-lg md:text-xl text-coffee font-medium leading-tight tracking-wide group-hover:text-coffee-light transition-colors">{name}</h3>
+    <li ref={ref} className={cn('group relative flex flex-col reveal', !inView && 'reveal-pending')}>
+      <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-cream-dark/40 shadow-sm transition-shadow duration-500 group-hover:shadow-md">
+        {hasImage ? (
+          <img
+            src={item.image}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            onError={() => setImageError(true)}
+            className="h-full w-full object-cover transition-transform duration-700 ease-out-quart group-hover:scale-105"
+          />
+        ) : (
+          <div className="grid h-full w-full place-items-center">
+            <img src={commaUrl} alt="" width={240} height={346} className="h-14 w-auto opacity-80" />
           </div>
-          
-          {price != null && <span className="text-coffee font-display font-bold text-lg mb-1 block">{formatPrice(price)}</span>}
+        )}
+      </div>
 
-          {description && (
-            <div className="mt-auto pt-2">
-              <AnimatePresence>
-                {isExpanded ? (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="font-sans text-gray-600 text-sm leading-relaxed font-light mb-2">
-                      {description}
-                    </p>
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
-              
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="flex items-center gap-1 text-coffee-light hover:text-coffee text-xs font-sans tracking-wide uppercase transition-colors"
-              >
-                {isExpanded ? (
-                  <>
-                    {t('actions.hide')} <ChevronUp size={14} />
-                  </>
-                ) : (
-                  <>
-                    {t('actions.details')} <ChevronDown size={14} />
-                  </>
-                )}
-              </button>
-            </div>
-          )}
-        </div>
-      </motion.div>
+      <h3 className="mt-3 font-display text-lg font-medium leading-tight tracking-wide text-coffee md:text-xl">
+        <button
+          type="button"
+          onClick={() => onOpen(item)}
+          aria-haspopup="dialog"
+          className="card-hit text-left uppercase transition-colors group-hover:text-coffee/80"
+        >
+          {item.name}
+        </button>
+      </h3>
 
-      <ImageModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        image={imageDetail || image || ''} 
-        name={name} 
-      />
-    </>
+      {item.price != null && (
+        <p className="mt-1 font-display text-lg font-bold tabular-nums text-coffee">{formatPrice(item.price)}</p>
+      )}
+    </li>
   );
 };
