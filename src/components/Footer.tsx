@@ -96,7 +96,7 @@ export const Footer = () => {
                 <div className="flex flex-col gap-1.5">
                   {[
                     ['Beira Mar', '10:00 - 18:00'],
-                    ['Centro', '09:00 - 17:00'],
+                    ['Centro', '09:00 - 16:00'],
                   ].map(([unit, hours]) => (
                     <div key={unit} className="flex items-center gap-2">
                       <span className="rounded-full border border-cream/30 px-2 py-0.5 text-xs font-medium text-cream">{unit}</span>
