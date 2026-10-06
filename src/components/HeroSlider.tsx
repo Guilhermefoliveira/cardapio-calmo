@@ -1,7 +1,10 @@
+import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
-import { ChevronDown } from 'lucide-react';
+import type { Swiper as SwiperInstance } from 'swiper';
+import { ChevronDown, Pause, Play } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import signatureUrl from '@/assets/brand/signature-vertical-beige.webp';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
@@ -39,15 +42,27 @@ const slides = [
   },
 ];
 
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 interface HeroSliderProps {
   onScrollToMenu: () => void;
 }
 
 export function HeroSlider({ onScrollToMenu }: HeroSliderProps) {
   const { t } = useTranslation();
+  const swiperRef = useRef<SwiperInstance | null>(null);
+  const [paused, setPaused] = useState(prefersReducedMotion);
+
+  const togglePlayback = () => {
+    const swiper = swiperRef.current;
+    if (!swiper) return;
+    if (paused) swiper.autoplay.start();
+    else swiper.autoplay.stop();
+    setPaused(!paused);
+  };
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative h-[58vh] min-h-[22rem] w-full overflow-hidden supports-[height:1svh]:h-[58svh] md:h-[72vh] md:min-h-[30rem]">
       <Swiper
         modules={[Autoplay, EffectFade, Pagination]}
         effect="fade"
@@ -60,6 +75,10 @@ export function HeroSlider({ onScrollToMenu }: HeroSliderProps) {
           clickable: true,
         }}
         loop={true}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+          if (paused) swiper.autoplay.stop();
+        }}
         className="h-full w-full"
       >
         {slides.map((slide, index) => (
@@ -67,37 +86,50 @@ export function HeroSlider({ onScrollToMenu }: HeroSliderProps) {
             <div className="relative h-full w-full">
               {/* Mobile Image */}
               <div
-                className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-[5000ms] hover:scale-105 md:hidden ${slide.mobilePosition}`}
+                className={`absolute inset-0 bg-cover bg-no-repeat md:hidden ${slide.mobilePosition}`}
                 style={{ backgroundImage: `url('${slide.mobile}')` }}
               />
 
               {/* Desktop Image */}
               <div
-                className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-[5000ms] hover:scale-105 hidden md:block ${slide.desktopPosition}`}
+                className={`absolute inset-0 hidden bg-cover bg-no-repeat md:block ${slide.desktopPosition}`}
                 style={{ backgroundImage: `url('${slide.desktop}')` }}
               />
 
-              <div className="absolute inset-0 bg-black/40" />
+              <div className="absolute inset-0 bg-black/35" />
             </div>
           </SwiperSlide>
         ))}
 
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4">
-          <h1 className="font-display text-6xl md:text-8xl text-cream mb-4 tracking-wide drop-shadow-sm opacity-90 uppercase animate-fade-in-up">
-            {t('hero.title')}
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
+          <h1 className="animate-fade-in-up">
+            <img
+              src={signatureUrl}
+              alt="Calmô, cafés e cookies"
+              width={695}
+              height={698}
+              className="h-auto w-[11rem] drop-shadow-md md:w-[15rem]"
+            />
           </h1>
-          <p className="font-sans text-xl md:text-2xl text-cream/90 font-light tracking-widest uppercase mb-12 animate-fade-in-up delay-200">
-            {t('hero.subtitle')}
-          </p>
 
           <button
             onClick={onScrollToMenu}
-            className="group flex flex-col items-center gap-2 text-cream/80 hover:text-cream transition-colors duration-300 cursor-pointer"
+            className="group mt-8 flex min-h-11 flex-col items-center gap-1 text-cream animate-fade-in-up [animation-delay:200ms] md:mt-10"
           >
-            <span className="text-sm tracking-[0.2em] uppercase">{t('hero.cta')}</span>
-            <ChevronDown className="w-6 h-6 animate-nudge-down" />
+            <span className="text-sm uppercase tracking-[0.2em]">{t('hero.cta')}</span>
+            <ChevronDown className="h-6 w-6 animate-nudge-down" aria-hidden="true" />
           </button>
         </div>
+
+        <button
+          type="button"
+          onClick={togglePlayback}
+          aria-pressed={paused}
+          aria-label={paused ? t('hero.play') : t('hero.pause')}
+          className="absolute bottom-2 right-2 z-10 grid h-11 w-11 place-items-center rounded-full bg-black/30 text-cream backdrop-blur-sm [--focus:theme(colors.cream.DEFAULT)]"
+        >
+          {paused ? <Play size={18} aria-hidden="true" /> : <Pause size={18} aria-hidden="true" />}
+        </button>
       </Swiper>
     </div>
   );

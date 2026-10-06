@@ -35,12 +35,12 @@ const WhatsAppIcon = ({ size = 24, strokeWidth = 2 }: { size?: number; strokeWid
 
 export const SocialIcons = () => {
   return (
-    <div className="flex gap-6 items-center">
+    <div className="flex items-center gap-2">
       <a 
         href="https://www.instagram.com/querocalmo/" 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="text-cream hover:text-coffee-light transition-all duration-300 transform hover:scale-110"
+        className="grid h-11 w-11 place-items-center text-cream transition-transform duration-300 hover:scale-110"
         aria-label="Instagram"
       >
         <Instagram size={28} strokeWidth={1.5} />
@@ -49,7 +49,7 @@ export const SocialIcons = () => {
         href="https://www.facebook.com/querocalmo"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-cream hover:text-coffee-light transition-all duration-300 transform hover:scale-110"
+        className="grid h-11 w-11 place-items-center text-cream transition-transform duration-300 hover:scale-110"
         aria-label="Facebook"
       >
         <Facebook size={28} strokeWidth={1.5} />
@@ -58,7 +58,7 @@ export const SocialIcons = () => {
         href="https://www.tiktok.com/@querocalmo"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-cream hover:text-coffee-light transition-all duration-300 transform hover:scale-110"
+        className="grid h-11 w-11 place-items-center text-cream transition-transform duration-300 hover:scale-110"
         aria-label="TikTok"
       >
         <TikTokIcon size={28} strokeWidth={1.5} />
@@ -67,7 +67,7 @@ export const SocialIcons = () => {
         href="https://wa.me/554892111168"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-cream hover:text-coffee-light transition-all duration-300 transform hover:scale-110"
+        className="grid h-11 w-11 place-items-center text-cream transition-transform duration-300 hover:scale-110"
         aria-label="WhatsApp"
       >
         <WhatsAppIcon size={28} strokeWidth={1.5} />

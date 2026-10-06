@@ -2,119 +2,127 @@ import { SocialIcons } from './SocialIcons';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { MapPin, Clock } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
+import signatureUrl from '@/assets/brand/signature-vertical-beige.webp';
+
+const UNITS = [
+  {
+    nameKey: 'footer.unitBeiraMar',
+    badgeKey: 'footer.headquarters',
+    address: ['Rua Altamiro Guimarães, 260 - Sala 1', 'Centro, Florianópolis'],
+    maps: 'https://www.google.com/maps/search/?api=1&query=Rua+Altamiro+Guimarães,+260,+Florianópolis',
+  },
+  {
+    nameKey: 'footer.unitCentro',
+    address: ['Rua Osmar Cunha, 472'],
+    noteKey: 'footer.annex',
+    maps: 'https://www.google.com/maps/search/?api=1&query=Rua+Osmar+Cunha,+472,+Florianópolis',
+  },
+];
 
 export const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-coffee py-16 px-6 mt-24 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-coffee via-coffee-light to-coffee opacity-30"></div>
-      
-      <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-4 gap-12 relative z-10 items-center lg:items-start">
-        
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-          <img 
-            src="/images/sorriso-calmo.webp" 
-            alt="Ilustração Calmô" 
-            className="w-16 opacity-90 mix-blend-screen"
+    <footer className="relative mt-24 bg-coffee px-6 py-16 text-cream [--focus:theme(colors.cream.DEFAULT)]">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 lg:grid lg:grid-cols-4 lg:items-start">
+
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+          <img
+            src={signatureUrl}
+            alt={t('footer.logoAlt')}
+            width={695}
+            height={698}
             loading="lazy"
+            className="mb-5 h-auto w-32"
           />
-          <h3 className="font-display text-4xl text-cream mb-4 tracking-wider uppercase">{t('hero.title')}</h3>
-          <p className="text-cream/80 text-sm font-sans font-light tracking-wide leading-relaxed">
+          <p className="text-sm font-light leading-relaxed tracking-wide text-cream/90">
             {t('footer.about')}
           </p>
         </div>
 
-        <div className="flex flex-col gap-6 w-full items-center lg:items-start">
-          <h4 className="font-display text-xl text-coffee-light uppercase tracking-widest mb-2 border-b border-coffee-light/20 pb-2 w-full text-center lg:text-left">
+        <div className="flex w-full flex-col items-center gap-6 lg:items-start">
+          <h3 className="mb-2 w-full border-b border-cream/20 pb-2 text-center font-display text-xl tracking-widest text-cream lg:text-left">
             {t('footer.location')}
-          </h4>
-          
-          <a 
-            href="https://www.google.com/maps/search/?api=1&query=Rua+Altamiro+Guimarães,+260,+Florianópolis" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex flex-col lg:flex-row gap-3 items-center lg:items-start group hover:opacity-90 transition-opacity w-full lg:w-auto"
-            aria-label="Ver Unidade Beira Mar no Google Maps"
-          >
-            <div className="p-2 bg-coffee-light/10 rounded-full group-hover:bg-coffee-light/20 transition-colors flex-shrink-0">
-              <MapPin size={20} className="text-coffee-light" />
-            </div>
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-              <h4 className="font-display text-lg text-cream mb-1 tracking-wide group-hover:text-coffee-light transition-colors">Unidade Beira Mar <span className="text-xs text-coffee-light font-sans bg-coffee-light/10 px-2 py-0.5 rounded-full ml-1 border border-coffee-light/20 align-middle inline-block mt-1 lg:mt-0">{t('footer.headquarters')}</span></h4>
-              <p className="text-cream/70 text-sm font-sans font-light leading-relaxed">
-                Rua Altamiro Guimarães, 260 - Sala 1<br/>
-                Centro, Florianópolis
-              </p>
-            </div>
-          </a>
+          </h3>
 
-          <a 
-            href="https://www.google.com/maps/search/?api=1&query=Rua+Osmar+Cunha,+472,+Florianópolis" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex flex-col lg:flex-row gap-3 items-center lg:items-start group hover:opacity-90 transition-opacity w-full lg:w-auto"
-            aria-label="Ver Unidade Centro no Google Maps"
-          >
-             <div className="p-2 bg-coffee-light/10 rounded-full group-hover:bg-coffee-light/20 transition-colors flex-shrink-0">
-              <MapPin size={20} className="text-coffee-light" />
-            </div>
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-              <h4 className="font-display text-lg text-cream mb-1 tracking-wide group-hover:text-coffee-light transition-colors">Unidade Centro</h4>
-              <p className="text-cream/70 text-sm font-sans font-light leading-relaxed">
-                Rua Osmar Cunha, 472<br/>
-                <span className="text-cream/50 text-xs italic">Anexo à Barbearia Tradicional</span>
-              </p>
-            </div>
-          </a>
+          {UNITS.map((unit) => (
+            <a
+              key={unit.nameKey}
+              href={unit.maps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex w-full flex-col items-center gap-3 rounded-lg transition-opacity hover:opacity-90 lg:w-auto lg:flex-row lg:items-start"
+            >
+              <div className="flex-shrink-0 rounded-full bg-coffee-light/15 p-2 transition-colors group-hover:bg-coffee-light/25">
+                <MapPin size={20} className="text-coffee-light" aria-hidden="true" />
+              </div>
+              <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+                <span className="mb-1 font-display text-lg tracking-wide text-cream">
+                  {t(unit.nameKey)}
+                  {unit.badgeKey && (
+                    <span className="ml-2 inline-block rounded-full border border-cream/30 px-2 py-0.5 align-middle font-sans text-xs text-cream">
+                      {t(unit.badgeKey)}
+                    </span>
+                  )}
+                </span>
+                <span className="text-sm font-light leading-relaxed text-cream/90">
+                  {unit.address.map((line) => (
+                    <span key={line} className="block">{line}</span>
+                  ))}
+                  {unit.noteKey && <span className="block text-xs italic">{t(unit.noteKey)}</span>}
+                </span>
+                <span className="sr-only">({t('footer.maps')})</span>
+              </div>
+            </a>
+          ))}
         </div>
-        
-        <div className="flex flex-col gap-6 w-full items-center lg:items-start">
-          <h4 className="font-display text-xl text-coffee-light uppercase tracking-widest mb-2 border-b border-coffee-light/20 pb-2 w-full text-center lg:text-left">
-            {t('footer.hours')}
-          </h4>
 
-          <div className="flex flex-col lg:flex-row gap-3 items-center lg:items-start w-full lg:w-auto">
-            <div className="p-2 bg-coffee-light/10 rounded-full flex-shrink-0">
-              <Clock size={20} className="text-coffee-light" />
+        <div className="flex w-full flex-col items-center gap-6 lg:items-start">
+          <h3 className="mb-2 w-full border-b border-cream/20 pb-2 text-center font-display text-xl tracking-widest text-cream lg:text-left">
+            {t('footer.hours')}
+          </h3>
+
+          <div className="flex w-full flex-col items-center gap-3 lg:w-auto lg:flex-row lg:items-start">
+            <div className="flex-shrink-0 rounded-full bg-coffee-light/15 p-2">
+              <Clock size={20} className="text-coffee-light" aria-hidden="true" />
             </div>
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-4">
+            <div className="flex flex-col items-center gap-4 text-center lg:items-start lg:text-left">
               <div>
-                <p className="text-cream font-sans font-medium text-sm mb-1">{t('footer.weekdays')}</p>
-                <p className="text-cream/70 text-sm font-sans font-light">07:30 - 19:30</p>
+                <p className="mb-1 text-sm font-medium text-cream">{t('footer.weekdays')}</p>
+                <p className="text-sm font-light text-cream/90">07:30 - 19:30</p>
               </div>
               <div>
-                <p className="text-cream font-sans font-medium text-sm mb-2">{t('footer.saturday')}</p>
+                <p className="mb-2 text-sm font-medium text-cream">{t('footer.saturday')}</p>
                 <div className="flex flex-col gap-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="text-coffee-light text-xs font-sans font-medium bg-coffee-light/10 px-2 py-0.5 rounded-full border border-coffee-light/20">Beira Mar</span>
-                    <span className="text-cream/70 text-sm font-sans font-light">10:00 - 18:00</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-coffee-light text-xs font-sans font-medium bg-coffee-light/10 px-2 py-0.5 rounded-full border border-coffee-light/20">Centro</span>
-                    <span className="text-cream/70 text-sm font-sans font-light">09:00 - 17:00</span>
-                  </div>
+                  {[
+                    ['Beira Mar', '10:00 - 18:00'],
+                    ['Centro', '09:00 - 17:00'],
+                  ].map(([unit, hours]) => (
+                    <div key={unit} className="flex items-center gap-2">
+                      <span className="rounded-full border border-cream/30 px-2 py-0.5 text-xs font-medium text-cream">{unit}</span>
+                      <span className="text-sm font-light text-cream/90">{hours}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col items-center lg:items-end lg:justify-self-end w-full gap-8">
-          
+        <div className="flex w-full flex-col items-center gap-8 lg:items-end lg:justify-self-end">
           <LanguageSwitcher />
 
           <div className="flex flex-col items-center lg:items-end">
             <SocialIcons />
-            
-            <div className="text-center lg:text-right text-cream/60 text-xs font-sans font-light tracking-wide mt-6">
+
+            <div className="mt-6 text-center text-xs font-light tracking-wide text-cream/90 lg:text-right">
               <p className="mb-1">© {new Date().getFullYear()} Calmô. {t('footer.copyright')}</p>
               <p>
-                <Trans 
+                <Trans
                   i18nKey="footer.credits"
                   components={{
-                    0: <a href="https://github.com/Guilhermefoliveira" target="_blank" rel="noopener noreferrer" className="hover:text-coffee-light transition-colors font-medium" />,
-                    1: <span className="text-coffee-light" />
+                    0: <a href="https://github.com/Guilhermefoliveira" target="_blank" rel="noopener noreferrer" className="font-medium underline-offset-2 transition-colors hover:underline" />,
+                    1: <span className="text-coffee-light" aria-hidden="true" />
                   }}
                 />
               </p>
