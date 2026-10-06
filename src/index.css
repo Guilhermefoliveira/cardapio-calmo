@@ -3,76 +3,54 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: 'Oswald';
-    src: url('/fonts/Oswald/Oswald-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Oswald';
-    src: url('/fonts/Oswald/Oswald-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Oswald';
-    src: url('/fonts/Oswald/Oswald-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Oswald';
-    src: url('/fonts/Oswald/Oswald-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Open Sans';
-    src: url('/fonts/OpenSans/OpenSans-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Open Sans';
-    src: url('/fonts/OpenSans/OpenSans-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Open Sans';
-    src: url('/fonts/OpenSans/OpenSans-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Open Sans';
-    src: url('/fonts/OpenSans/OpenSans-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
+  :root {
+    --focus: theme('colors.coffee.DEFAULT');
+    --category-nav-h: 0px;
   }
 
   body {
     @apply bg-cream text-gray-800 font-sans antialiased;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-display text-coffee uppercase tracking-wide;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* Stretches a card's button over the whole card and draws the focus ring around it. */
+  .card-hit::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: theme('borderRadius.2xl');
+  }
+
+  .card-hit:focus-visible {
+    outline: none;
+  }
+
+  .card-hit:focus-visible::after {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  /* Scroll-in reveal for cards; stays visible when the observer is missing. */
+  .reveal {
+    @apply transition-[opacity,transform] duration-500 ease-out-quart;
+  }
+
+  .reveal-pending {
+    @apply translate-y-5 opacity-0;
   }
 }
 
@@ -86,7 +64,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-coffee-light/80 rounded-full hover:bg-coffee;
+  @apply bg-coffee/60 rounded-full hover:bg-coffee;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -99,11 +77,11 @@
 
 /* Swiper pagination */
 .swiper-pagination-bullet {
-  background: #F5E6D3;
+  background: #F5F1EB;
   opacity: 0.5;
 }
 .swiper-pagination-bullet-active {
-  background: #F5E6D3;
+  background: #F5F1EB;
   opacity: 1;
 }
 
@@ -115,5 +93,10 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .reveal-pending {
+    transform: none;
+    opacity: 1;
   }
 }
