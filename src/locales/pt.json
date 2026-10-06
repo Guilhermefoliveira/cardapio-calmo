@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "cta": "Ver Cardápio",
+    "pause": "Pausar as fotos",
+    "play": "Retomar as fotos"
+  },
+  "nav": {
+    "categories": "Categorias do cardápio"
+  },
+  "language": {
+    "pt": "Português",
+    "en": "Inglês",
+    "es": "Espanhol",
+    "label": "Idioma"
+  },
+  "actions": {
+    "orderIfood": "Peça no iFood",
+    "close": "Fechar",
+    "backToTop": "Voltar ao topo"
+  },
+  "sheet": {
+    "views": "Fotos do produto",
+    "viewWhole": "Inteiro",
+    "viewClose": "De perto"
+  },
+  "categories": {
+    "Cookies": "Cookies",
+    "Cafés Quentes": "Cafés Quentes",
+    "Cafés Gelados": "Cafés Gelados",
+    "Matcha": "Matcha",
+    "Gelados": "Gelados",
+    "Outras bebidas": "Outras Bebidas",
+    "Salgados": "Salgados"
+  },
+  "instagram": {
+    "viewProfile": "Ver perfil",
+    "captions": {
+      "pistache": "Nosso cookie de pistache é irresistível! 💚",
+      "matchaBerry": "Refrescante e delicioso: Matcha Berry. ✨",
+      "croissant": "O acompanhamento perfeito para o seu café. 🥐"
+    }
+  },
+  "footer": {
+    "about": "Cafés especiais e cookies artesanais feitos com carinho para o seu momento de pausa.",
+    "location": "Localização",
+    "hours": "Horário de Funcionamento",
+    "social": "Redes Sociais",
+    "weekdays": "Segunda a Sexta",
+    "saturday": "Sábado",
+    "headquarters": "Matriz",
+    "copyright": "Todos os direitos reservados.",
+    "credits": "Feito por <0>Guilherme Oliveira</0> com <1>♥</1> e café.",
+    "maps": "abrir no Google Maps",
+    "annex": "Anexo à Barbearia Tradicional",
+    "unitBeiraMar": "Unidade Beira Mar",
+    "unitCentro": "Unidade Centro",
+    "logoAlt": "Calmô, cafés e cookies"
+  }
+}
